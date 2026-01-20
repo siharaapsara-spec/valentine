@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kapil 💖 Be My Valentine?</title>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffd6e8, #ffeef5);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      padding-top: 80px;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #ff477e;
+      font-size: 42px;
+    }
+
+    p {
+      font-size: 20px;
+      color: #555;
+    }
+
+    .buttons {
+      margin-top: 40px;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 14px 30px;
+      margin: 15px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    #yes {
+      background-color: #ff4d6d;
+      color: white;
+    }
+
+    #no {
+      background-color: #adb5bd;
+      color: white;
+      position: absolute;
+    }
+
+    #message {
+      margin-top: 40px;
+      font-size: 26px;
+      color: #d6336c;
+      display: none;
+    }
+
+    .heart {
+      position: fixed;
+      font-size: 24px;
+      animation: float 4s linear infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Hey ghochu kapu 💕</h1>
+  <p>I have a very important question for you...</p>
+
+  <h1>Will you be my Valentine? 💌</h1>
+
+  <div class="buttons">
+    <button id="yes" onclick="sayYes()">Yes ❤️</button>
+    <button id="no" onmouseover="moveNo()">No 🙈</button>
+  </div>
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+  <div id="message">
+    YAYYY!!! 💗🥹  
+    <br>you are officially my valentine now 💕  
+    <br>I love youuuuu 😘
+    <br>Now don't you dare to look at any other booty than mine 🤬
+  </div>
+
+  <script>
+  function sayYes() {
+    document.getElementById("message").style.display = "block";
+    playMusic();
+    startHeartRain();
+  }
+
+  function moveNo() {
+    const noBtn = document.getElementById("no");
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  }
+
+  function startHeartRain() {
+    for (let i = 0; i < 60; i++) {
+      setTimeout(createFallingHeart, i * 80);
+    }
+  }
+function playMusic() {
+  const music = document.getElementById("bgMusic");
+  music.play();
+}
+
+  function createFallingHeart() {
+    const heart = document.createElement("div");
+    heart.innerHTML = "💖";
+    heart.style.position = "fixed";
+    heart.style.top = "-30px";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 18) + "px";
+    heart.style.zIndex = "9999";
+    heart.style.pointerEvents = "none";
+    heart.style.transition = "transform 3.5s linear, opacity 3.5s";
+
+    document.body.appendChild(heart);
+
+    // fall down
+    setTimeout(() => {
+      heart.style.transform = "translateY(110vh)";
+      heart.style.opacity = "0";
+    }, 50);
+
+    // remove after animation
+    setTimeout(() => {
+      heart.remove();
+    }, 4000);
+  }
+</script>
+
+
+</body>
+</html>
